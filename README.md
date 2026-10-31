@@ -1,11 +1,27 @@
-# Wigner-Crystal-in-a-Langevin-Heat-Bath-Perturbation-Behavior
+# Thermal Stability of Wigner Crystals in 2D Semiconductors
 
-A Wigner crystal is a lattice structure that occurs naturally in low density electron gas and was first discovered in 2019. 
-Wigner crystals occur naturally in the low electron density quantum dots and modeling their 'thermal melting' behavior is relevant to the understanding of quantum phase transitions in 2D semiconductors, which is the focus of research at the Condensed Matter Group under Dr. Ilya Esterlis of the University of Wisconsin-Madison.
+## Project Overview
 
-Simulation results at a temperature 0.003C match perturbation behavior observed in literature for the melting of a 26 electron Wigner crystal. [Ref]
+Developed a Python-based stochastic simulation to investigate the thermal stability of two-dimensional Wigner crystals, where electrons form ordered lattice structures due to Coulomb repulsion. The project studies how temperature-driven particle fluctuations affect crystal stability and potentially contribute to lattice breakdown.
 
-Coloumb iteractions are calculated using modular arithmetic to reduce computation time and double-counting errors. 
-A modified Verlet algorithm known as 'Leapfrogging' is used with a Gaussian-distributed noise term to incorporate thermal effects of the Langevin heat bath.
+## Theory
 
-Ref: https://journals.aps.org/prb/abstract/10.1103/PhysRevB.49.2667
+The model describes interacting electrons confined by a harmonic potential, subject to Coulomb repulsion and stochastic thermal perturbations. Particle dynamics follow a Langevin-inspired equation of motion:
+
+$$m\frac{d^2\mathbf{r}_i}{dt^2}=-\mathbf{r}_i+\sum_{j\neq i}\frac{\mathbf{r}_i-\mathbf{r}_j}{|\mathbf{r}_i-\mathbf{r}_j|^3}+\boldsymbol{\eta}_i(t)$$
+
+where the stochastic term represents Gaussian thermal fluctuations controlled by temperature \(T\).
+
+Crystal stability is assessed through particle displacement trajectories and positional variance, with larger fluctuations indicating reduced structural stability.
+
+## How It Was Built
+
+Developed a Python stochastic simulation of 26 interacting electrons over 10,000 time steps using finite-difference integration of coupled equations of motion. Modeled nonlinear Coulomb interactions and harmonic confinement using NumPy, incorporating Gaussian-distributed thermal perturbations into particle dynamics. Implemented modular indexing to calculate pairwise electrostatic forces while avoiding self-interactions. Applied time-series analysis and variance estimation to individual electron trajectories, examining positional fluctuations and the average variance of selected inner-shell particles to assess lattice stability.
+
+## Results
+
+Simulated temperature-driven fluctuations in a 26-electron Wigner crystal, tracking particle positions, velocities, and accelerations across 10,000 time steps. Analyzed positional variance and particle trajectories to quantify thermal perturbations and investigate lattice stability under stochastic forcing. Generated time-series and two-dimensional trajectory visualizations to characterize electron displacement from initial lattice configurations.
+
+## Technologies
+
+Python, NumPy, Matplotlib, Stochastic Differential Equations, Langevin Dynamics, Gaussian Noise, Finite-Difference Methods, Monte Carlo Simulation, Time-Series Analysis, Variance Analysis, Computational Statistical Mechanics.
